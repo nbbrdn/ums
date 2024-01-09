@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="col-xl-4 col-lg-4 com-md-6 col-sm-12">
+    <div class="card m-3">
+        <div class="card-body bg-success">
+            <h3>User Login</h3>
+            <a href="/user/" class="nav-link text-white">login</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-4 col-lg-4 com-md-6 col-sm-12">
+    <div class="card m-3">
+        <div class="card-body bg-info">
+            <h3>User Registration</h3>
+            <a href="/user/signup/" class="nav-link text-white">register</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-4 col-lg-4 com-md-6 col-sm-12">
+    <div class="card m-3">
+        <div class="card-body bg-danger">
+            <h3>Admin Login</h3>
+            <a href="/user/" class="nav-link text-white">admin login</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
