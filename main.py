@@ -60,21 +60,26 @@ def user_signup():
             flash("Please fill all the fields", "danger")
             return redirect("/user/signup")
         else:
-            hash_password = bcrypt.generate_password_hash(password, 10)
-            user = User(
-                fname=fname,
-                lname=lname,
-                email=email,
-                username=username,
-                password=hash_password,
-            )
-            db.session.add(user)
-            db.session.commit()
-            flash(
-                "User account created successfully. Administrator will approve your account in 10 to 30 minutes.",
-                "success",
-            )
-            return redirect("/user/")
+            stored_email = User().query.filter_by(email=email).first()
+            if stored_email:
+                flash("Email already exists", "danger")
+                return redirect("/user/signup")
+            else:
+                hash_password = bcrypt.generate_password_hash(password, 10)
+                user = User(
+                    fname=fname,
+                    lname=lname,
+                    email=email,
+                    username=username,
+                    password=hash_password,
+                )
+                db.session.add(user)
+                db.session.commit()
+                flash(
+                    "User account created successfully. Administrator will approve your account in 10 to 30 minutes.",
+                    "success",
+                )
+                return redirect("/user/")
     else:
         return render_template("user/signup.html", title="User Signup")
 
